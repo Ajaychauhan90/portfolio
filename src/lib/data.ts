@@ -242,7 +242,7 @@ export const projects: Project[] = [
     screenshots: [
       {
         id: "homepage",
-        src: "/projects/Homepage.png",
+        src: "/projects/Homepage.webp",
         alt: "Hawkeye Expeditions homepage showing featured Himalayan tours and company information",
         label: "Homepage",
         description: "The main landing page of the tourism website",
@@ -253,7 +253,7 @@ export const projects: Project[] = [
       },
       {
         id: "collection",
-        src: "/projects/collection.png",
+        src: "/projects/collection.webp",
         alt: "Leh-Ladakh tour collection page with expedition cards and prices",
         label: "Tour Collection",
         description: "A collection page grouping related Himalayan expeditions",
@@ -264,7 +264,7 @@ export const projects: Project[] = [
       },
       {
         id: "tour-details",
-        src: "/projects/tour.png",
+        src: "/projects/tour.webp",
         alt: "Sikkim expedition details page with itinerary, inclusions and booking section",
         label: "Tour Details",
         description: "Detailed itinerary, pricing, inclusions, and reservation call to action",
@@ -275,7 +275,7 @@ export const projects: Project[] = [
       },
       {
         id: "booking",
-        src: "/projects/booking.png",
+        src: "/projects/booking.webp",
         alt: "Expedition reservation form with trip, date, traveler and duration fields",
         label: "Booking Form",
         description: "The reservation form with live trip pricing and Turnstile protection",
@@ -286,7 +286,7 @@ export const projects: Project[] = [
       },
       {
         id: "contact",
-        src: "/projects/contact.png",
+        src: "/projects/contact.webp",
         alt: "Hawkeye Expeditions contact page with inquiry form and company contact details",
         label: "Contact Page",
         description: "A dedicated contact form with direct company information",
@@ -297,7 +297,7 @@ export const projects: Project[] = [
       },
       {
         id: "admin",
-        src: "/projects/admin.png",
+        src: "/projects/admin.webp",
         alt: "Private bookings dashboard with reservation totals, filters and management actions",
         label: "Admin Dashboard",
         description: "The private dashboard for reviewing and managing reservations",
