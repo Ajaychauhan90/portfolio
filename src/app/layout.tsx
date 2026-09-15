@@ -37,14 +37,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://ajaychauhan.dev",
+    url: "https://portfolio-site.ajaychauhan0898.workers.dev",
     siteName: "Ajay Chauhan",
     title: "Ajay Chauhan — Next.js & Full-Stack Developer",
     description:
       "Full-stack developer specialising in Next.js, React, Node.js, and Supabase. I build complete web applications from database to deployment.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/projects/og-image.png",
         width: 1200,
         height: 630,
         alt: "Ajay Chauhan — Next.js & Full-Stack Developer",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     title: "Ajay Chauhan — Next.js & Full-Stack Developer",
     description:
       "Full-stack developer specialising in Next.js, React, Node.js, and Supabase.",
-    images: ["/og-image.png"],
+    images: ["/projects/og-image.png"],
   },
   robots: {
     index: true,
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
   },
-  metadataBase: new URL("https://ajaychauhan.dev"),
+  metadataBase: new URL("https://portfolio-site.ajaychauhan0898.workers.dev"),
 };
 
 export default function RootLayout({

@@ -3,6 +3,7 @@ import FadeIn from "@/components/ui/FadeIn";
 import SectionLabel from "@/components/ui/SectionLabel";
 import SectionHeading from "@/components/ui/SectionHeading";
 import TechTag from "@/components/ui/TechTag";
+import ProjectScreenshot from "@/components/ui/ProjectScreenshot";
 import { projects } from "@/lib/data";
 
 const project = projects[0]; // tourism website
@@ -10,11 +11,11 @@ const project = projects[0]; // tourism website
 // Compact workflow for the homepage overview
 const workflowSteps = [
   { label: "Visitor", sub: "Browses the website" },
-  { label: "Enquiry Form", sub: "Submits an enquiry" },
+  { label: "Booking Form", sub: "Chooses a trip and travel details" },
   { label: "Turnstile", sub: "Bot protection check" },
   { label: "Backend", sub: "Processes the request" },
-  { label: "Database", sub: "Stores in Supabase" },
-  { label: "Admin Dashboard", sub: "Company reviews it" },
+  { label: "Database", sub: "Stores the reservation" },
+  { label: "Admin Dashboard", sub: "Company manages the booking" },
 ];
 
 export default function FeaturedProject() {
@@ -58,7 +59,7 @@ export default function FeaturedProject() {
                   {[
                     "Responsive multi-page website",
                     "Tour & service pages",
-                    "Enquiry form system",
+                    "Booking and contact forms",
                     "Node.js backend",
                     "Supabase / PostgreSQL database",
                     "Admin dashboard",
@@ -90,16 +91,16 @@ export default function FeaturedProject() {
               </div>
             </FadeIn>
 
-            {/* Enquiry workflow */}
+            {/* Booking workflow */}
             <FadeIn delay={0.2}>
               <div className="p-6 bg-[#111111] border border-[#1f1f1f] rounded-lg">
                 <h3 className="text-sm font-semibold text-[#f5f5f5] mb-1">
-                  Enquiry workflow
+                  Booking workflow
                 </h3>
                 <p className="text-xs text-[#6b6b6b] mb-6">
-                  How a visitor's enquiry travels through the system
+                  How a visitor&apos;s reservation travels through the system
                 </p>
-                <ol className="relative" aria-label="Enquiry workflow steps">
+                <ol className="relative" aria-label="Booking workflow steps">
                   {workflowSteps.map((step, i) => (
                     <li key={step.label} className="flex gap-4 pb-5 last:pb-0">
                       {/* Connector line */}
@@ -133,38 +134,9 @@ export default function FeaturedProject() {
 
           {/* Right column: tech + screenshot + CTA */}
           <div className="lg:col-span-2 space-y-6">
-            {/* Screenshot placeholder */}
+            {/* Project screenshot */}
             <FadeIn delay={0.15}>
-              <div
-                className="aspect-video rounded-lg border border-dashed border-[#2a2a2a] bg-[#111111] flex flex-col items-center justify-center gap-2 p-4 text-center"
-                role="img"
-                aria-label="Homepage screenshot — coming soon"
-              >
-                <svg
-                  className="w-8 h-8 text-[#2a2a2a]"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-                <p className="text-xs font-mono text-[#3a3a3a]">
-                  Website screenshot
-                  <br />
-                  <span className="text-[#2a2a2a]">Coming soon</span>
-                </p>
-              </div>
+              <ProjectScreenshot screenshot={project.screenshots[0]} />
             </FadeIn>
 
             {/* Tech stack */}

@@ -4,7 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SectionLabel from "@/components/ui/SectionLabel";
 import TechTag from "@/components/ui/TechTag";
-import ScreenshotPlaceholder from "@/components/ui/ScreenshotPlaceholder";
+import ProjectScreenshot from "@/components/ui/ProjectScreenshot";
 import FadeIn from "@/components/ui/FadeIn";
 import { projects } from "@/lib/data";
 import CaseStudyWorkflow from "./CaseStudyWorkflow";
@@ -12,11 +12,11 @@ import CaseStudyWorkflow from "./CaseStudyWorkflow";
 export const metadata: Metadata = {
   title: "Indian Tourism Company Website — Case Study",
   description:
-    "A full-stack tourism website built with Next.js, Node.js, Supabase, and Cloudflare Workers. Includes an enquiry system, admin dashboard, and Cloudflare Turnstile integration.",
+    "A full-stack tourism website built with Next.js, Node.js, Supabase, and Cloudflare Workers. Includes a booking system, admin dashboard, and Cloudflare Turnstile integration.",
   openGraph: {
     title: "Indian Tourism Company Website — Case Study | Ajay Chauhan",
     description:
-      "Full-stack tourism website: Next.js frontend, Node.js backend, Supabase/PostgreSQL database, admin dashboard, and Cloudflare Workers deployment.",
+      "Full-stack tourism booking website: Next.js frontend, Node.js backend, Supabase/PostgreSQL database, admin dashboard, and Cloudflare Workers deployment.",
     url: "https://ajaychauhan.dev/projects/tourism-website",
   },
 };
@@ -102,7 +102,7 @@ export default function TourismCaseStudy() {
         {/* ── Hero screenshot ────────────────────────────────────── */}
         <div className="max-w-5xl mx-auto px-6 py-12">
           <FadeIn>
-            <ScreenshotPlaceholder screenshot={project.screenshots[0]} />
+            <ProjectScreenshot screenshot={project.screenshots[0]} preload />
           </FadeIn>
         </div>
 
@@ -170,22 +170,22 @@ export default function TourismCaseStudy() {
                 Pages &amp; views
               </h2>
               <div className="grid sm:grid-cols-2 gap-4">
-                {project.screenshots.slice(1).map((shot) => (
-                  <ScreenshotPlaceholder key={shot.id} screenshot={shot} />
+                {project.screenshots.slice(1, 5).map((shot) => (
+                  <ProjectScreenshot key={shot.id} screenshot={shot} />
                 ))}
               </div>
             </section>
           </FadeIn>
 
-          {/* 5. Enquiry Workflow */}
+          {/* 5. Booking Workflow */}
           <FadeIn>
             <section aria-labelledby="cs-workflow">
               <SectionLabel>05 — Workflow</SectionLabel>
               <h2 id="cs-workflow" className="text-2xl font-bold text-[#f5f5f5] mb-2">
-                Enquiry workflow
+                Booking workflow
               </h2>
               <p className="text-[#a3a3a3] leading-relaxed mb-8 max-w-2xl">
-                When a visitor submits an enquiry, it travels through several
+                When a visitor submits a booking, it travels through several
                 layers before reaching the company. Here&apos;s the complete
                 flow from submission to review.
               </p>
@@ -202,19 +202,19 @@ export default function TourismCaseStudy() {
               </h2>
               <p className="text-[#a3a3a3] leading-relaxed max-w-3xl mb-6">
                 The company has access to a private admin dashboard where all
-                submitted enquiries are listed. The dashboard allows the team
-                to view enquiry details and manage incoming requests without
-                needing a third-party CRM.
+                reservations are listed. The dashboard lets the team review
+                booking details, track availability, and approve or reject
+                requests without needing a third-party CRM.
               </p>
               <div className="grid sm:grid-cols-2 gap-4 mb-6">
-                <ScreenshotPlaceholder screenshot={project.screenshots[3]} />
+                <ProjectScreenshot screenshot={project.screenshots[5]} />
                 <div className="p-5 bg-[#111111] border border-[#1f1f1f] rounded-lg flex flex-col justify-center gap-3">
                   <h3 className="text-sm font-semibold text-[#f5f5f5]">Dashboard capabilities</h3>
                   <ul className="space-y-2" role="list">
                     {[
-                      "View all submitted enquiries",
-                      "See enquiry details (name, contact, message)",
-                      "Manage and track enquiry status",
+                      "View and search all reservations",
+                      "See travel dates, group size, duration, and totals",
+                      "Approve, reject, and track booking status",
                       "Authenticated access — not publicly accessible",
                     ].map((item) => (
                       <li key={item} className="flex items-start gap-2 text-sm text-[#a3a3a3]">
@@ -242,10 +242,10 @@ export default function TourismCaseStudy() {
                   <h3 className="text-sm font-semibold text-[#f5f5f5] mb-3">Supabase / PostgreSQL</h3>
                   <p className="text-sm text-[#a3a3a3] leading-relaxed">
                     The application uses Supabase as the database layer, backed
-                    by PostgreSQL. Enquiry data submitted through the public
-                    forms is stored here and made available to the admin
-                    dashboard. Supabase handles authentication and provides a
-                    clean API for database access.
+                    by PostgreSQL. Booking and application data submitted
+                    through the public forms is stored here and made available
+                    to the admin dashboard. Supabase handles authentication and
+                    provides a clean API for database access.
                   </p>
                 </div>
                 <div className="p-5 bg-[#111111] border border-[#1f1f1f] rounded-lg">
@@ -255,8 +255,8 @@ export default function TourismCaseStudy() {
                       "Form submitted by visitor",
                       "Backend validates & sanitises input",
                       "Turnstile token verified server-side",
-                      "Enquiry written to PostgreSQL via Supabase",
-                      "Admin reads enquiries via authenticated dashboard",
+                      "Booking written to PostgreSQL via Supabase",
+                      "Admin reads bookings via authenticated dashboard",
                     ].map((step, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-[#a3a3a3]">
                         <span className="text-xs font-mono text-[#3a3a3a] mt-0.5 w-4 flex-shrink-0">
@@ -280,10 +280,10 @@ export default function TourismCaseStudy() {
               </h2>
               <div className="p-6 bg-[#111111] border border-[#1f1f1f] rounded-lg max-w-3xl">
                 <p className="text-sm text-[#a3a3a3] leading-relaxed mb-4">
-                  The public enquiry forms are protected with Cloudflare
+                  The public booking and contact forms are protected with Cloudflare
                   Turnstile, which helps reduce automated and spam submissions.
                   When a visitor submits a form, a Turnstile token is generated
-                  client-side and verified server-side before the enquiry is
+                  client-side and verified server-side before the request is
                   processed. Submissions that fail verification are rejected
                   before any database write occurs.
                 </p>

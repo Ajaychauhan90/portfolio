@@ -1,14 +1,15 @@
 "use client";
 
-import { useState, useId } from "react";
+import { useState, useId, useRef } from "react";
 import FadeIn from "@/components/ui/FadeIn";
 import SectionLabel from "@/components/ui/SectionLabel";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { personalInfo } from "@/lib/data";
+import TurnstileWidget from "@/components/ui/TurnstileWidget";
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
-interface FormData {
+interface ContactFields {
   name: string;
   email: string;
   subject: string;
@@ -17,13 +18,18 @@ interface FormData {
 
 export default function Contact() {
   const id = useId();
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<ContactFields>({
     name: "",
     email: "",
     subject: "",
     message: "",
   });
   const [formState, setFormState] = useState<FormState>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [turnstileVersion, setTurnstileVersion] = useState(0);
+  const submittingRef = useRef(false);
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -33,31 +39,60 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submittingRef.current) return;
+
+    if (!turnstileSiteKey) {
+      setErrorMessage("The contact form is not configured yet.");
+      setFormState("error");
+      return;
+    }
+
+    if (!turnstileToken) {
+      setErrorMessage("Please complete the security check.");
+      setFormState("error");
+      return;
+    }
+
+    submittingRef.current = true;
     setFormState("submitting");
+    setErrorMessage("");
 
-    /*
-     * TODO: Connect to your email service or API route.
-     *
-     * Options:
-     *   1. Create src/app/api/contact/route.ts and POST to it
-     *   2. Use Resend, EmailJS, Formspree, or similar
-     *
-     * Example fetch:
-     *
-     *   const res = await fetch("/api/contact", {
-     *     method: "POST",
-     *     headers: { "Content-Type": "application/json" },
-     *     body: JSON.stringify(formData),
-     *   });
-     *   if (res.ok) setFormState("success");
-     *   else setFormState("error");
-     *
-     * Until connected, the form shows a "not yet configured" message.
-     */
+    const submittedForm = new window.FormData(e.currentTarget as HTMLFormElement);
 
-    // Simulate delay so the UI isn't jarring
-    await new Promise((r) => setTimeout(r, 600));
-    setFormState("error"); // Will show "not configured" message
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          company: submittedForm.get("company") ?? "",
+          turnstileToken,
+          submissionId: crypto.randomUUID(),
+        }),
+      });
+
+      const result = (await response.json().catch(() => null)) as {
+        message?: string;
+      } | null;
+
+      if (!response.ok) {
+        throw new Error(result?.message || "Your message could not be sent.");
+      }
+
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      setFormState("success");
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "Your message could not be sent. Please try again."
+      );
+      setTurnstileToken("");
+      setTurnstileVersion((version) => version + 1);
+      setFormState("error");
+    } finally {
+      submittingRef.current = false;
+    }
   };
 
   const inputClass =
@@ -154,9 +189,18 @@ export default function Contact() {
             ) : (
               <form
                 onSubmit={handleSubmit}
-                noValidate
                 aria-label="Contact form"
               >
+                <div className="sr-only" aria-hidden="true">
+                  <label htmlFor={`${id}-company`}>Company website</label>
+                  <input
+                    id={`${id}-company`}
+                    name="company"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
                 <div className="grid sm:grid-cols-2 gap-4 mb-4">
                   <div>
                     <label
@@ -235,14 +279,41 @@ export default function Contact() {
                   />
                 </div>
 
-                {/* Not-configured notice */}
+                <div className="mb-6">
+                  {turnstileSiteKey ? (
+                    <TurnstileWidget
+                      key={turnstileVersion}
+                      siteKey={turnstileSiteKey}
+                      onVerify={(token) => {
+                        setTurnstileToken(token);
+                        if (formState === "error") {
+                          setFormState("idle");
+                          setErrorMessage("");
+                        }
+                      }}
+                      onExpire={() => setTurnstileToken("")}
+                      onError={() => {
+                        setTurnstileToken("");
+                        setErrorMessage(
+                          "The security check could not load. Please try again."
+                        );
+                        setFormState("error");
+                      }}
+                    />
+                  ) : (
+                    <p className="rounded border border-amber-500/20 bg-amber-500/10 p-3 text-xs text-amber-500">
+                      Contact form security is not configured.
+                    </p>
+                  )}
+                </div>
+
+                {/* Submission error */}
                 {formState === "error" && (
                   <p
                     role="alert"
                     className="text-xs text-amber-500 mb-4 p-3 bg-amber-500/10 border border-amber-500/20 rounded"
                   >
-                    The contact form isn&apos;t connected to an email service
-                    yet. Please email me directly at{" "}
+                    {errorMessage} You can also email me directly at{" "}
                     <a
                       href={`mailto:${personalInfo.email}`}
                       className="underline hover:text-amber-400"
@@ -255,7 +326,7 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  disabled={formState === "submitting"}
+                  disabled={formState === "submitting" || !turnstileSiteKey}
                   className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-[#f59e0b] hover:bg-[#fcd34d] disabled:opacity-60 disabled:cursor-not-allowed text-[#0a0a0a] font-medium text-sm rounded transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f59e0b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0d0d]"
                 >
                   {formState === "submitting" ? (

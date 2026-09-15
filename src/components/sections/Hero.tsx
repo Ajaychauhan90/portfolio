@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { personalInfo } from "@/lib/data";
 
 export default function Hero() {
   return (

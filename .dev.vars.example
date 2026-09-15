@@ -1,0 +1,2 @@
+# Select the matching Next.js environment when previewing through Wrangler.
+NEXTJS_ENV=development

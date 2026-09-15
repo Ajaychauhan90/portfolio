@@ -17,11 +17,14 @@ export interface Feature {
 
 export interface Screenshot {
   id: string;
+  src: string;
+  alt: string;
   label: string;
   description: string;
   aspectRatio: "landscape" | "portrait";
-  /** Replace this with actual image path when available */
-  placeholder: true;
+  width: number;
+  height: number;
+  objectPosition?: string;
 }
 
 export interface Project {

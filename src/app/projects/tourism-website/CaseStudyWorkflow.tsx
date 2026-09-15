@@ -56,7 +56,7 @@ export default function CaseStudyWorkflow({ steps }: Props) {
     <div
       className="p-6 bg-[#111111] border border-[#1f1f1f] rounded-lg"
       role="region"
-      aria-label="Enquiry workflow diagram"
+      aria-label="Booking workflow diagram"
     >
       {/* ── Desktop: Z-shaped grid ─────────────────────────────── */}
       <div className="hidden md:block">
@@ -110,7 +110,7 @@ export default function CaseStudyWorkflow({ steps }: Props) {
       </div>
 
       {/* ── Mobile: vertical list ──────────────────────────────── */}
-      <ol className="md:hidden space-y-0" aria-label="Enquiry workflow steps">
+      <ol className="md:hidden space-y-0" aria-label="Booking workflow steps">
         {steps.map((step, i) => (
           <li key={step.step} className="flex gap-4 pb-6 last:pb-0">
             <div className="flex flex-col items-center">

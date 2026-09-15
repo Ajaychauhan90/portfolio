@@ -18,7 +18,7 @@ export default function Services() {
           </SectionHeading>
           <p className="text-[#a3a3a3] max-w-xl leading-relaxed mb-12">
             Whether you need a complete website from scratch or improvements
-            to something that already exists, here's how I can help.
+            to something that already exists, here&apos;s how I can help.
           </p>
         </FadeIn>
 

@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ajay Chauhan Portfolio
 
-## Getting Started
+A Next.js portfolio deployed to Cloudflare Workers with OpenNext.
 
-First, run the development server:
+## Local development
+
+1. Install dependencies with `npm install`.
+2. Copy `.env.example` to `.env.local` and add your local values.
+3. Use Cloudflare Turnstile test keys for local contact-form testing.
+4. Run `npm run dev` and open `http://localhost:3000`.
+
+Do not commit `.env.local`, `.dev.vars`, API keys, or Turnstile secret keys.
+
+## Contact form setup
+
+The contact form posts to `src/app/api/contact/route.ts`. The route validates
+the request, verifies Cloudflare Turnstile, and sends a plain-text email through
+the Resend REST API.
+
+Required variables are documented in `.env.example`:
+
+- `NEXT_PUBLIC_TURNSTILE_SITE_KEY`
+- `TURNSTILE_SECRET_KEY`
+- `RESEND_API_KEY`
+- `CONTACT_TO_EMAIL`
+- `CONTACT_FROM_EMAIL`
+- `CONTACT_ALLOWED_ORIGIN`
+- `CONTACT_ALLOWED_HOSTNAME`
+
+For production, configure `NEXT_PUBLIC_TURNSTILE_SITE_KEY` as a Cloudflare build
+variable. Configure the remaining values as runtime variables, and store the
+Resend and Turnstile secret keys as secrets.
+
+## Checks
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run lint
+npx tsc --noEmit --incremental false
+npm run build
+npm run preview
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deployment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run deploy -- --keep-vars
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`--keep-vars` prevents a deployment from removing variables configured in the
+Cloudflare dashboard.
