@@ -4,6 +4,7 @@ import SectionLabel from "@/components/ui/SectionLabel";
 import SectionHeading from "@/components/ui/SectionHeading";
 import TechTag from "@/components/ui/TechTag";
 import ProjectScreenshot from "@/components/ui/ProjectScreenshot";
+import { ScreenshotGalleryProvider } from "@/components/ui/ScreenshotGallery";
 import { projects } from "@/lib/data";
 
 const project = projects[0]; // tourism website
@@ -20,11 +21,12 @@ const workflowSteps = [
 
 export default function FeaturedProject() {
   return (
-    <section
-      id="projects"
-      className="py-24 bg-[#0d0d0d]"
-      aria-labelledby="projects-heading"
-    >
+    <ScreenshotGalleryProvider screenshots={project.screenshots}>
+      <section
+        id="projects"
+        className="py-24 bg-[#0c121a]"
+        aria-labelledby="projects-heading"
+      >
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <FadeIn>
@@ -32,12 +34,12 @@ export default function FeaturedProject() {
           <SectionHeading as="h2" id="projects-heading" className="mb-3">
             {project.title}
           </SectionHeading>
-          <p className="text-[#a3a3a3] max-w-2xl leading-relaxed mb-2">
+          <p className="text-[#cbd5e1] max-w-2xl leading-relaxed mb-2">
             {project.shortDescription}
           </p>
-          <p className="text-xs font-mono text-[#6b6b6b] mb-10">
+          <p className="text-xs font-mono text-[#94a3b8] mb-10">
             Role:{" "}
-            <span className="text-[#a3a3a3]">{project.role}</span>
+            <span className="text-[#cbd5e1]">{project.role}</span>
             &nbsp;·&nbsp;Status:{" "}
             <span className="text-green-400">Live</span>
           </p>
@@ -48,11 +50,11 @@ export default function FeaturedProject() {
           <div className="lg:col-span-3 space-y-8">
             {/* What I built */}
             <FadeIn delay={0.1}>
-              <div className="p-6 bg-[#111111] border border-[#1f1f1f] rounded-lg">
-                <h3 className="text-sm font-semibold text-[#f5f5f5] mb-4">
+              <div className="surface-card p-6 border rounded-xl">
+                <h3 className="text-sm font-semibold text-[#f8fafc] mb-4">
                   What I built
                 </h3>
-                <p className="text-sm text-[#a3a3a3] leading-relaxed mb-5">
+                <p className="text-sm text-[#cbd5e1] leading-relaxed mb-5">
                   {project.longDescription}
                 </p>
                 <ul className="grid sm:grid-cols-2 gap-2" role="list">
@@ -68,7 +70,7 @@ export default function FeaturedProject() {
                   ].map((item) => (
                     <li
                       key={item}
-                      className="flex items-start gap-2 text-xs text-[#a3a3a3]"
+                      className="flex items-start gap-2 text-xs text-[#cbd5e1]"
                     >
                       <svg
                         className="w-3 h-3 text-[#f59e0b] mt-0.5 flex-shrink-0"
@@ -93,11 +95,11 @@ export default function FeaturedProject() {
 
             {/* Booking workflow */}
             <FadeIn delay={0.2}>
-              <div className="p-6 bg-[#111111] border border-[#1f1f1f] rounded-lg">
-                <h3 className="text-sm font-semibold text-[#f5f5f5] mb-1">
+              <div className="surface-card p-6 border rounded-xl">
+                <h3 className="text-sm font-semibold text-[#f8fafc] mb-1">
                   Booking workflow
                 </h3>
-                <p className="text-xs text-[#6b6b6b] mb-6">
+                <p className="text-xs text-[#94a3b8] mb-6">
                   How a visitor&apos;s reservation travels through the system
                 </p>
                 <ol className="relative" aria-label="Booking workflow steps">
@@ -105,23 +107,23 @@ export default function FeaturedProject() {
                     <li key={step.label} className="flex gap-4 pb-5 last:pb-0">
                       {/* Connector line */}
                       <div className="flex flex-col items-center">
-                        <div className="w-7 h-7 rounded-full bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center flex-shrink-0">
+                        <div className="w-7 h-7 rounded-full bg-[#38bdf8]/[0.07] border border-[#38bdf8]/25 flex items-center justify-center flex-shrink-0 shadow-[0_0_18px_rgba(56,189,248,0.08)]">
                           <span className="text-[10px] font-mono text-[#f59e0b]">
                             {String(i + 1).padStart(2, "0")}
                           </span>
                         </div>
                         {i < workflowSteps.length - 1 && (
                           <div
-                            className="w-px flex-1 mt-1 bg-[#1f1f1f]"
+                            className="w-px flex-1 mt-1 bg-[#263244]"
                             aria-hidden="true"
                           />
                         )}
                       </div>
                       <div className="pt-1 pb-2">
-                        <p className="text-sm font-medium text-[#f5f5f5]">
+                        <p className="text-sm font-medium text-[#f8fafc]">
                           {step.label}
                         </p>
-                        <p className="text-xs text-[#6b6b6b] mt-0.5">
+                        <p className="text-xs text-[#94a3b8] mt-0.5">
                           {step.sub}
                         </p>
                       </div>
@@ -141,8 +143,8 @@ export default function FeaturedProject() {
 
             {/* Tech stack */}
             <FadeIn delay={0.25}>
-              <div className="p-5 bg-[#111111] border border-[#1f1f1f] rounded-lg">
-                <h3 className="text-xs font-semibold text-[#6b6b6b] uppercase tracking-wider mb-3">
+              <div className="surface-card p-5 border rounded-xl">
+                <h3 className="text-xs font-semibold text-[#94a3b8] uppercase tracking-wider mb-3">
                   Tech Stack
                 </h3>
                 <div className="flex flex-wrap gap-2">
@@ -160,7 +162,7 @@ export default function FeaturedProject() {
                   href={project.liveUrl ?? "#"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-[#f59e0b] hover:bg-[#fcd34d] text-[#0a0a0a] font-medium text-sm rounded transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f59e0b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+                  className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-[#f59e0b] hover:bg-[#fbbf24] text-[#090d12] font-semibold text-sm rounded-full transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f59e0b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#090d12]"
                 >
                   View live website
                   <svg
@@ -180,7 +182,7 @@ export default function FeaturedProject() {
                 </a>
                 <Link
                   href={project.caseStudyPath}
-                  className="flex items-center justify-center gap-2 w-full px-4 py-3 border border-[#2a2a2a] hover:border-[#3a3a3a] text-[#a3a3a3] hover:text-[#f5f5f5] font-medium text-sm rounded transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f59e0b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+                  className="flex items-center justify-center gap-2 w-full px-4 py-3 border border-[#334155] hover:border-[#38bdf8]/70 text-[#cbd5e1] hover:text-[#f8fafc] font-medium text-sm rounded-full transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f59e0b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#090d12]"
                 >
                   Read full case study
                   <svg
@@ -203,6 +205,7 @@ export default function FeaturedProject() {
           </div>
         </div>
       </div>
-    </section>
+      </section>
+    </ScreenshotGalleryProvider>
   );
 }

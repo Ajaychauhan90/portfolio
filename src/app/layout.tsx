@@ -89,7 +89,7 @@ export default function RootLayout({
       <body className="min-h-screen antialiased">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[#f59e0b] focus:text-[#0a0a0a] focus:font-medium focus:text-sm focus:rounded focus:outline-none"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[#f59e0b] focus:text-[#090d12] focus:font-medium focus:text-sm focus:rounded focus:outline-none"
         >
           Skip to main content
         </a>

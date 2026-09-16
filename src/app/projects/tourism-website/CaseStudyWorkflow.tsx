@@ -54,7 +54,7 @@ export default function CaseStudyWorkflow({ steps }: Props) {
 
   return (
     <div
-      className="p-6 bg-[#111111] border border-[#1f1f1f] rounded-lg"
+      className="surface-panel p-6 border rounded-xl"
       role="region"
       aria-label="Booking workflow diagram"
     >
@@ -67,8 +67,8 @@ export default function CaseStudyWorkflow({ steps }: Props) {
               {/* Connector arrow after each node except the last in the row */}
               {i < topRow.length - 1 && (
                 <div className="absolute top-6 left-[calc(50%+22px)] right-0 flex items-center" aria-hidden="true">
-                  <div className="flex-1 h-px bg-[#2a2a2a]" />
-                  <svg className="w-3 h-3 text-[#2a2a2a] -mr-1 flex-shrink-0" fill="currentColor" viewBox="0 0 12 12">
+                  <div className="flex-1 h-px bg-[#334155]" />
+                  <svg className="w-3 h-3 text-[#334155] -mr-1 flex-shrink-0" fill="currentColor" viewBox="0 0 12 12">
                     <path d="M4 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
@@ -80,8 +80,8 @@ export default function CaseStudyWorkflow({ steps }: Props) {
 
         {/* Bend connector: right side going down */}
         <div className="flex justify-end pr-[12.5%] my-1" aria-hidden="true">
-          <div className="w-px h-8 bg-[#2a2a2a] relative">
-            <svg className="w-3 h-3 text-[#2a2a2a] absolute -bottom-1 left-1/2 -translate-x-1/2" fill="currentColor" viewBox="0 0 12 12">
+          <div className="w-px h-8 bg-[#334155] relative">
+            <svg className="w-3 h-3 text-[#334155] absolute -bottom-1 left-1/2 -translate-x-1/2" fill="currentColor" viewBox="0 0 12 12">
               <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
@@ -97,10 +97,10 @@ export default function CaseStudyWorkflow({ steps }: Props) {
               {/* Connector arrow after each node except the last (rightmost visible) */}
               {i < bottomRow.length - 1 && (
                 <div className="absolute top-6 left-0 right-[calc(50%+22px)] flex items-center" aria-hidden="true">
-                  <svg className="w-3 h-3 text-[#2a2a2a] -ml-1 flex-shrink-0" fill="currentColor" viewBox="0 0 12 12">
+                  <svg className="w-3 h-3 text-[#334155] -ml-1 flex-shrink-0" fill="currentColor" viewBox="0 0 12 12">
                     <path d="M8 2L4 6l4 4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                  <div className="flex-1 h-px bg-[#2a2a2a]" />
+                  <div className="flex-1 h-px bg-[#334155]" />
                 </div>
               )}
               <StepNode step={step} prefersReduced={prefersReduced ?? false} index={topRow.length + i} />
@@ -114,16 +114,16 @@ export default function CaseStudyWorkflow({ steps }: Props) {
         {steps.map((step, i) => (
           <li key={step.step} className="flex gap-4 pb-6 last:pb-0">
             <div className="flex flex-col items-center">
-              <div className="w-10 h-10 rounded-full bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center flex-shrink-0 text-[#6b6b6b]">
+              <div className="w-10 h-10 rounded-full bg-[#38bdf8]/[0.07] border border-[#38bdf8]/25 flex items-center justify-center flex-shrink-0 text-[#38bdf8]">
                 {stepIcons[step.step]}
               </div>
               {i < steps.length - 1 && (
-                <div className="w-px flex-1 mt-2 bg-[#1f1f1f]" aria-hidden="true" />
+                <div className="w-px flex-1 mt-2 bg-[#263244]" aria-hidden="true" />
               )}
             </div>
             <div className="pt-2">
-              <p className="text-sm font-semibold text-[#f5f5f5]">{step.title}</p>
-              <p className="text-xs text-[#6b6b6b] mt-0.5 leading-relaxed">{step.description}</p>
+              <p className="text-sm font-semibold text-[#f8fafc]">{step.title}</p>
+              <p className="text-xs text-[#94a3b8] mt-0.5 leading-relaxed">{step.description}</p>
             </div>
           </li>
         ))}
@@ -150,7 +150,7 @@ function StepNode({
       className="flex flex-col items-center text-center px-2 py-4 w-full"
     >
       {/* Icon circle */}
-      <div className="w-12 h-12 rounded-full bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center text-[#6b6b6b] mb-3 z-10 relative">
+      <div className="w-12 h-12 rounded-full bg-[#38bdf8]/[0.07] border border-[#38bdf8]/25 flex items-center justify-center text-[#38bdf8] mb-3 z-10 relative shadow-[0_0_20px_rgba(56,189,248,0.08)]">
         {stepIcons[step.step]}
       </div>
       {/* Step number */}
@@ -158,11 +158,11 @@ function StepNode({
         {String(step.step).padStart(2, "0")}
       </span>
       {/* Title */}
-      <p className="text-xs font-semibold text-[#f5f5f5] leading-snug mb-1">
+      <p className="text-xs font-semibold text-[#f8fafc] leading-snug mb-1">
         {step.title}
       </p>
       {/* Description */}
-      <p className="text-[10px] text-[#6b6b6b] leading-relaxed max-w-[100px]">
+      <p className="text-[10px] text-[#94a3b8] leading-relaxed max-w-[100px]">
         {step.description}
       </p>
     </motion.div>

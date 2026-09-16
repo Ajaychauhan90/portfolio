@@ -7,7 +7,7 @@ export default function Process() {
   return (
     <section
       id="process"
-      className="py-24 bg-[#0a0a0a]"
+      className="py-24 bg-[#090d12]"
       aria-labelledby="process-heading"
     >
       <div className="max-w-6xl mx-auto px-6">
@@ -16,7 +16,7 @@ export default function Process() {
           <SectionHeading as="h2" id="process-heading" className="mb-3">
             Development process
           </SectionHeading>
-          <p className="text-[#a3a3a3] max-w-xl leading-relaxed mb-12">
+          <p className="text-[#cbd5e1] max-w-xl leading-relaxed mb-12">
             I follow a structured approach to every project so nothing gets
             missed and the result works correctly in production.
           </p>
@@ -32,30 +32,30 @@ export default function Process() {
                 {/* Connector line on desktop */}
                 {i < processSteps.length - 1 && (
                   <div
-                    className="hidden md:block absolute top-5 left-[calc(1.75rem+1px)] right-0 h-px bg-[#1f1f1f]"
+                    className="hidden md:block absolute top-5 left-[calc(1.75rem+1px)] right-0 h-px bg-gradient-to-r from-[#38bdf8]/35 to-[#263244]"
                     aria-hidden="true"
                   />
                 )}
                 {/* Connector line on mobile */}
                 {i < processSteps.length - 1 && (
                   <div
-                    className="md:hidden absolute top-9 left-[13px] bottom-0 w-px bg-[#1f1f1f]"
+                    className="md:hidden absolute top-9 left-[13px] bottom-0 w-px bg-[#263244]"
                     aria-hidden="true"
                   />
                 )}
 
                 {/* Step circle */}
-                <div className="relative flex-shrink-0 w-7 h-7 md:mb-3 rounded-full bg-[#111111] border border-[#2a2a2a] flex items-center justify-center z-10">
+                <div className="relative flex-shrink-0 w-7 h-7 md:mb-3 rounded-full bg-[#101722] border border-[#38bdf8]/35 flex items-center justify-center z-10 shadow-[0_0_20px_rgba(56,189,248,0.08)]">
                   <span className="text-[10px] font-mono text-[#f59e0b]">
                     {step.number}
                   </span>
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-semibold text-[#f5f5f5] mb-1">
+                  <h3 className="text-sm font-semibold text-[#f8fafc] mb-1">
                     {step.title}
                   </h3>
-                  <p className="text-xs text-[#6b6b6b] leading-relaxed">
+                  <p className="text-xs text-[#94a3b8] leading-relaxed">
                     {step.description}
                   </p>
                 </div>

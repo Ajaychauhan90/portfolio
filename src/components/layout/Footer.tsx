@@ -41,7 +41,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="border-t border-[#1f1f1f] bg-[#0a0a0a]"
+      className="border-t border-[#263244] bg-[#090d12]"
       role="contentinfo"
     >
       <div className="max-w-6xl mx-auto px-6 py-12">
@@ -50,12 +50,12 @@ export default function Footer() {
           <div className="space-y-2">
             <Link
               href="/"
-              className="text-[#f5f5f5] font-semibold text-sm hover:text-[#f59e0b] transition-colors duration-200"
+              className="text-[#f8fafc] font-semibold text-sm hover:text-[#f59e0b] transition-colors duration-200"
             >
               <span className="font-mono text-[#f59e0b]">/</span>{" "}
               {personalInfo.name}
             </Link>
-            <p className="text-xs text-[#6b6b6b] max-w-xs">
+            <p className="text-xs text-[#94a3b8] max-w-xs">
               {personalInfo.title}
             </p>
           </div>
@@ -67,7 +67,7 @@ export default function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-xs text-[#6b6b6b] hover:text-[#a3a3a3] transition-colors duration-200"
+                    className="text-xs text-[#94a3b8] hover:text-[#cbd5e1] transition-colors duration-200"
                   >
                     {item.label}
                   </Link>
@@ -85,7 +85,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${link.label} (opens in new tab)`}
-                className="text-[#6b6b6b] hover:text-[#a3a3a3] transition-colors duration-200"
+                className="text-[#94a3b8] hover:text-[#cbd5e1] transition-colors duration-200"
               >
                 {link.icon}
               </a>
@@ -93,7 +93,7 @@ export default function Footer() {
             <a
               href={`mailto:${personalInfo.email}`}
               aria-label={`Email ${personalInfo.name}`}
-              className="text-[#6b6b6b] hover:text-[#a3a3a3] transition-colors duration-200"
+              className="text-[#94a3b8] hover:text-[#cbd5e1] transition-colors duration-200"
             >
               <svg
                 className="w-4 h-4"
@@ -114,11 +114,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-10 pt-6 border-t border-[#1f1f1f] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-          <p className="text-xs text-[#6b6b6b]">
+        <div className="mt-10 pt-6 border-t border-[#263244] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+          <p className="text-xs text-[#94a3b8]">
             &copy; {year} {personalInfo.name}. All rights reserved.
           </p>
-          <p className="text-xs text-[#6b6b6b] font-mono">
+          <p className="text-xs text-[#94a3b8] font-mono">
             Built with Next.js & Tailwind CSS
           </p>
         </div>

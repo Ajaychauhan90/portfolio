@@ -5,7 +5,7 @@ import { personalInfo } from "@/lib/data";
 
 export default function About() {
   return (
-    <section id="about" className="py-24 bg-[#0a0a0a]" aria-labelledby="about-heading">
+    <section id="about" className="py-24 bg-[#090d12]" aria-labelledby="about-heading">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-16 items-start">
           {/* Left: text */}
@@ -20,14 +20,14 @@ export default function About() {
             <div className="space-y-4">
               {personalInfo.about.map((paragraph, i) => (
                 <FadeIn key={i} delay={0.1 * (i + 1)}>
-                  <p className="text-[#a3a3a3] leading-relaxed">{paragraph}</p>
+                  <p className="text-[#cbd5e1] leading-relaxed">{paragraph}</p>
                 </FadeIn>
               ))}
             </div>
 
             <FadeIn delay={0.4}>
               <div className="mt-8 flex flex-wrap gap-3">
-                <div className="px-3 py-1.5 bg-[#111111] border border-[#1f1f1f] rounded text-xs font-mono text-[#6b6b6b]">
+                <div className="px-3 py-1.5 bg-[#38bdf8]/[0.07] border border-[#38bdf8]/20 rounded-full text-xs font-mono text-[#94a3b8]">
                   {personalInfo.education}
                 </div>
               </div>
@@ -37,15 +37,15 @@ export default function About() {
           {/* Right: interests + quick facts */}
           <div className="space-y-8">
             <FadeIn delay={0.2}>
-              <div className="p-6 bg-[#111111] border border-[#1f1f1f] rounded-lg">
-                <h3 className="text-sm font-semibold text-[#f5f5f5] mb-4">
+              <div className="surface-card p-6 border rounded-xl">
+                <h3 className="text-sm font-semibold text-[#f8fafc] mb-4">
                   Interests
                 </h3>
                 <ul className="space-y-2" role="list">
                   {personalInfo.interests.map((interest) => (
                     <li
                       key={interest}
-                      className="flex items-center gap-3 text-sm text-[#a3a3a3]"
+                      className="flex items-center gap-3 text-sm text-[#cbd5e1]"
                     >
                       <span
                         className="w-1 h-1 rounded-full bg-[#f59e0b] flex-shrink-0"
@@ -59,8 +59,8 @@ export default function About() {
             </FadeIn>
 
             <FadeIn delay={0.3}>
-              <div className="p-6 bg-[#111111] border border-[#1f1f1f] rounded-lg">
-                <h3 className="text-sm font-semibold text-[#f5f5f5] mb-4">
+              <div className="surface-card p-6 border rounded-xl">
+                <h3 className="text-sm font-semibold text-[#f8fafc] mb-4">
                   What I bring to a project
                 </h3>
                 <ul className="space-y-2" role="list">
@@ -73,7 +73,7 @@ export default function About() {
                   ].map((item) => (
                     <li
                       key={item}
-                      className="flex items-center gap-3 text-sm text-[#a3a3a3]"
+                      className="flex items-center gap-3 text-sm text-[#cbd5e1]"
                     >
                       <svg
                         className="w-3.5 h-3.5 text-[#f59e0b] flex-shrink-0"

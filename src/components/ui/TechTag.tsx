@@ -11,7 +11,7 @@ const categoryColors: Record<string, string> = {
   database: "text-purple-400 bg-purple-400/10 border-purple-400/20",
   deployment: "text-orange-400 bg-orange-400/10 border-orange-400/20",
   security: "text-red-400 bg-red-400/10 border-red-400/20",
-  default: "text-[#a3a3a3] bg-[#1a1a1a] border-[#2a2a2a]",
+  default: "text-[#cbd5e1] bg-[#141e2a] border-[#334155]",
 };
 
 export default function TechTag({ tag, size = "md" }: TechTagProps) {

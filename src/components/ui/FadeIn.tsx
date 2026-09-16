@@ -24,8 +24,8 @@ export default function FadeIn({
       ? { opacity: 0 }
       : {
           opacity: 0,
-          y: from === "bottom" ? 16 : 0,
-          x: from === "left" ? -16 : from === "right" ? 16 : 0,
+          y: from === "bottom" ? 22 : 0,
+          x: from === "left" ? -22 : from === "right" ? 22 : 0,
         };
 
   return (
@@ -33,7 +33,7 @@ export default function FadeIn({
       initial={initial}
       whileInView={{ opacity: 1, y: 0, x: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}

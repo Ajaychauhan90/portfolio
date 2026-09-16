@@ -36,7 +36,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="py-24 bg-[#0a0a0a]"
+      className="py-24 bg-[#090d12]"
       aria-labelledby="skills-heading"
     >
       <div className="max-w-6xl mx-auto px-6">
@@ -45,7 +45,7 @@ export default function Skills() {
           <SectionHeading as="h2" id="skills-heading" className="mb-3">
             Technologies I work with
           </SectionHeading>
-          <p className="text-[#a3a3a3] max-w-xl leading-relaxed mb-12">
+          <p className="text-[#cbd5e1] max-w-xl leading-relaxed mb-12">
             I work across the full stack — from building interfaces to
             designing databases and configuring deployment pipelines.
           </p>
@@ -54,12 +54,12 @@ export default function Skills() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {skillGroups.map((group, i) => (
             <FadeIn key={group.category} delay={0.08 * i}>
-              <div className="p-5 bg-[#111111] border border-[#1f1f1f] rounded-lg h-full">
+              <div className="surface-card p-5 border rounded-xl h-full">
                 <div className="flex items-center gap-2 mb-4">
-                  <span className="text-[#6b6b6b]">
+                  <span className="text-[#38bdf8]">
                     {categoryIcons[group.category]}
                   </span>
-                  <h3 className="text-xs font-semibold text-[#6b6b6b] uppercase tracking-wider">
+                  <h3 className="text-xs font-semibold text-[#94a3b8] uppercase tracking-wider">
                     {group.category}
                   </h3>
                 </div>

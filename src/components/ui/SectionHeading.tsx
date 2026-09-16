@@ -14,7 +14,7 @@ export default function SectionHeading({
   return (
     <Tag
       id={id}
-      className={`text-3xl md:text-4xl font-bold text-[#f5f5f5] tracking-tight ${className}`}
+      className={`text-3xl md:text-4xl font-bold text-[#f8fafc] leading-tight tracking-[-0.03em] ${className}`}
     >
       {children}
     </Tag>
